@@ -12,18 +12,15 @@ class ShortenedUrlController < ApplicationController
     end
 
     if !@shortened_url
-      url_hash = Digest::SHA256.base64digest long_url
+      url_hash = Digest::SHA256.base64digest(long_url + Time.now.to_i.to_s)
       url_hash.sub!(/=+$/, '')
 
       short_hash = url_hash[-8, 8]
 
       @shortened_url = ShortenedUrl.new(long_url: long_url, short_hash: short_hash)
       # TODO: handle '/' characters in hash
-      if @shortened_url.save
-
-      else
-        @shortened_url = nil
-        # TODO: return an error response
+      if !@shortened_url.save
+        return render :json => @shortened_url.errors
       end
     end
 
