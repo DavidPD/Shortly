@@ -4,7 +4,8 @@ This is a simple url shortener built for a coding exersize with a time frame aro
 
 to run:
 1. Clone this repository
-2. run `bundle install` to install dependencies
+2. run `bundle install` then `yarn install` to install dependencies
+3. run `rails db:migrate` to setup the dev database
 3. run `rails server` to start the server
 
 To test there is a basic test page at the root of the application (Default for me is localhost:3000/) or you can use curl to post a request to `/short_link` for example:
