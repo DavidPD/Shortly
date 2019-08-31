@@ -1,7 +1,19 @@
 class ShortenedUrlController < ApplicationController
+
+  def index
+  end
+
   def create
     # TODO: validate the url
-    # TODO: hash the url and take a substring to use as the short url
+    long_url = params[:long_url]
+    url_hash = Digest::SHA256.base64digest long_url
+    url_hash.sub!(/=+$/, '')
+
+    short_hash = url_hash[-8, 8]
+
+    render plain: short_hash + '    ' + url_hash
+    # TODO: save the shortened url
+    # TODO: Handle the possible case of a shortened hash collision
   end
 
   def show
