@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post '/', action: 'create', controller: 'shortened_url'
+  get '/:hash', action: 'show', controller: 'shortened_url'
 end
