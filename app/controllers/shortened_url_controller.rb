@@ -11,13 +11,19 @@ class ShortenedUrlController < ApplicationController
 
     short_hash = url_hash[-8, 8]
 
-    render plain: short_hash + '    ' + url_hash
-    # TODO: save the shortened url
+    @shortened_url = ShortenedUrl.new(long_url: long_url, short_hash: short_hash)
+    # TODO: handle '/' characters in hash
+    if @shortened_url.save
+      render plain: request.base_url + '/' + short_hash
+      # TODO: return json response
+    else
+      # TODO: return an error response
+    end
     # TODO: Handle the possible case of a shortened hash collision
   end
 
   def show
-    render plain: params[:hash]
+    render plain: params[:short_hash]
     # TODO: get a url by it's hash and redirect to the long url
   end
 end

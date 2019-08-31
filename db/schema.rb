@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_31_020024) do
+ActiveRecord::Schema.define(version: 2019_08_31_031145) do
 
   create_table "shortened_urls", force: :cascade do |t|
     t.string "long_url"
-    t.string "hash"
+    t.string "short_hash"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
