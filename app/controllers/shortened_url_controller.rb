@@ -14,8 +14,8 @@ class ShortenedUrlController < ApplicationController
     @shortened_url = ShortenedUrl.new(long_url: long_url, short_hash: short_hash)
     # TODO: handle '/' characters in hash
     if @shortened_url.save
-      render plain: request.base_url + '/' + short_hash
-      # TODO: return json response
+      short_link = request.base_url + '/' + short_hash
+      render :json => {"long_url" => @shortened_url.long_url, "short_link" => short_link}
     else
       # TODO: return an error response
     end
