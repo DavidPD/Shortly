@@ -36,7 +36,10 @@ class ShortenedUrlController < ApplicationController
   end
 
   def show
-    render plain: params[:short_hash]
-    # TODO: get a url by it's hash and redirect to the long url
+    @shortened_url = ShortenedUrl.find_by(short_hash: params[:short_hash])
+
+    if @shortened_url
+      redirect_to @shortened_url.long_url
+    end
   end
 end
