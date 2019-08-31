@@ -1,5 +1,8 @@
 class ShortenedUrlController < ApplicationController
 
+  # Allow outside requests to POST to this endpoint
+  skip_forgery_protection
+
   def index
   end
 
