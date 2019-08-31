@@ -4,7 +4,6 @@ class ShortenedUrlController < ApplicationController
   end
 
   def create
-    # TODO: validate the url
     long_url = params[:long_url]
 
     @shortened_url = ShortenedUrl.find_by(long_url: long_url)
